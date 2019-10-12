@@ -4,6 +4,7 @@ import sys
 import time
 from bs4 import BeautifulSoup
 import urlparse
+import platform
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -15,7 +16,12 @@ chrome_options = Options()
 chrome_options.add_argument('--headless')
 #chrome_options.add_argument('referer=https://s.taobao.com/search?q=%E6%B2%99%E5%8F%91&imgfile=&js=1&stats_click=search_radio_all%3A1&initiative_id=staobaoz_20191009&ie=utf8&bcoffset=6&ntoffset=6&p4ppushleft=1%2C48&s=0')
 
-driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
+print '操作系统', platform.system()
+if 'Darwin' in platform.system():
+    driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
+if 'windows' in platform.system().lower():
+    driver = webdriver.Chrome(chrome_options = chrome_options)
+
 
 driver.get('http://www.taobao.com')
 
@@ -73,7 +79,8 @@ def index_crawl(idx, url, file_name):
     html = BeautifulSoup(driver.page_source)
     d = open(file_name, 'w')
     print >>d, driver.page_source
-    item_list = html.find_all(class_ = 'item J_MouserOnverReq')
+    item_list = html.find_all(class_ = 'J_MouserOnverReq')
+    #item_list = html.find_all(class_ = 'item J_MouserOnverReq')
     print '存储为' + file_name + '，取得所有商品共' + str(len(item_list)) + '件，和下一页链接'
     for s in item_list:
         item2 = s.find(class_ = 'pic')

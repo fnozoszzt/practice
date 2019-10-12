@@ -5,6 +5,7 @@ import time
 from bs4 import BeautifulSoup
 import urlparse
 import requests
+import platform
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -13,7 +14,11 @@ from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
-driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
+print '操作系统', platform.system()
+if 'Darwin' in platform.system():
+    driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
+if 'windows' in platform.system().lower():
+    driver = webdriver.Chrome(chrome_options = chrome_options)
 
 driver.get('http://www.baidu.com')
 
