@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
-driver = webdriver.Chrome('./chromedriver_76', chrome_options = chrome_options)
+driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
 
 driver.get('http://www.baidu.com')
 

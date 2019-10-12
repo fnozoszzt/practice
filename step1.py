@@ -15,7 +15,7 @@ chrome_options = Options()
 chrome_options.add_argument('--headless')
 #chrome_options.add_argument('referer=https://s.taobao.com/search?q=%E6%B2%99%E5%8F%91&imgfile=&js=1&stats_click=search_radio_all%3A1&initiative_id=staobaoz_20191009&ie=utf8&bcoffset=6&ntoffset=6&p4ppushleft=1%2C48&s=0')
 
-driver = webdriver.Chrome('./chromedriver_76', chrome_options = chrome_options)
+driver = webdriver.Chrome('./chromedriver', chrome_options = chrome_options)
 
 driver.get('http://www.taobao.com')
 
